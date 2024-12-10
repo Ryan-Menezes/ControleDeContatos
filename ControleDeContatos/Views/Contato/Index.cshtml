@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Listagem de contatos";
+}
+
+<div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-between py-4 align-items-md-center">
+        <h1 class="display-4 fs-2">Listagem de contatos</h1>
+
+        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Criar">
+            Novo
+            <i class="bi bi-plus-square-fill"></i>
+        </a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Celular</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@@mdo</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="ApagarConfirmacao">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@@fat</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="ApagarConfirmacao">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
