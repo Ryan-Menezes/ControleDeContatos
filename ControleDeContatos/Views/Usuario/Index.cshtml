@@ -1,0 +1,69 @@
+﻿@model List<UsuarioModel>
+@{
+    ViewData["Title"] = "Listagem de usuários";
+}
+
+<div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-between py-4 align-items-md-center">
+        <h1 class="display-4 fs-2">Listagem de usuários</h1>
+
+        <a role="button" class="btn btn-primary" asp-controller="Usuario" asp-action="Criar">
+            Novo
+            <i class="bi bi-plus-square-fill"></i>
+        </a>
+    </div>
+
+    @if (TempData["sucesso"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["sucesso"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["erro"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["erro"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Login</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Data de cadastro</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var usuario in Model)
+                {
+                    <tr>
+                        <th scope="row">@usuario.Id</th>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.Login</td>
+                        <td>@usuario.Email</td>
+                        <td>@usuario.DataCadastro</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="Editar">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="ApagarConfirmacao">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

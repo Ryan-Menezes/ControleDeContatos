@@ -13,6 +13,7 @@ builder.Services
      );
 
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();
 

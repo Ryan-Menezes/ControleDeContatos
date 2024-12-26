@@ -40,7 +40,7 @@ namespace ControleDeContatos.Controllers
             }
             catch (Exception ex)
             {
-                TempData["erro"] = $"Ops! não consegimos cadastrar seu contatos, tente novamente, Erro: {ex.Message}";
+                TempData["erro"] = $"Ops! não consegimos cadastrar seu contato, tente novamente, Erro: {ex.Message}";
 
                 return RedirectToAction("Index");
             }
