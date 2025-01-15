@@ -1,5 +1,5 @@
 ﻿@using ControleDeContatos.Enum
-@model UsuarioModel
+@model UsuarioSemSenhaModel
 @{
     ViewData["Title"] = "Editar usuário";
 }
@@ -36,15 +36,9 @@
         </div>
 
         <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" asp-for="Senha" class="form-control" id="senha">
-            @Html.ValidationMessageFor(x => x.Senha)
-        </div>
-
-        <div class="mb-3">
             <label for="perfil" class="form-label">Perfil</label>
             <select asp-for="Perfil" class="form-control" id="perfil">
-                <option value="0">Selecione</option>
+                <option value="">Selecione</option>
                 <option value="@PerfilEnum.Admin">Administrador</option>
                 <option value="@PerfilEnum.Padrao">Padrão</option>
             </select>

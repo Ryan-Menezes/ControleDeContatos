@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeContatos.Models
 {
-    public class UsuarioModel
+    public class UsuarioSemSenhaModel
     {
         public int Id { get; set; }
 
@@ -18,18 +18,6 @@ namespace ControleDeContatos.Models
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Esse campo é obrigatório")]
-        public string Senha { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Esse campo é obrigatório")]
         public PerfilEnum? Perfil { get; set; }
-
-        public DateTime? DataCadastro { get; set; }
-
-        public DateTime? DataAtualizacao { get; set; }
-
-        public bool SenhaValida(string senha)
-        {
-            return Senha == senha;
-        }
     }
 }

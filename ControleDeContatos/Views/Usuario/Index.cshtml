@@ -1,4 +1,5 @@
-﻿@model List<UsuarioModel>
+﻿@using ControleDeContatos.Enum
+@model List<UsuarioModel>
 @{
     ViewData["Title"] = "Listagem de usuários";
 }
@@ -36,6 +37,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Login</th>
                 <th scope="col">E-mail</th>
+                <th scope="col">Perfil</th>
                 <th scope="col">Data de cadastro</th>
                 <th scope="col"></th>
             </tr>
@@ -50,6 +52,7 @@
                         <td>@usuario.Nome</td>
                         <td>@usuario.Login</td>
                         <td>@usuario.Email</td>
+                        <td>@(usuario.Perfil == PerfilEnum.Admin ? "Admin" : "Padrão")</td>
                         <td>@usuario.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">

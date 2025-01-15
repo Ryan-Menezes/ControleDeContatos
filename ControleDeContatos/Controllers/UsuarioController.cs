@@ -50,15 +50,33 @@ namespace ControleDeContatos.Controllers
         {
             var usuario = _usuarioRepository.BuscarPorId(id);
 
-            return View(usuario);
+            var usuarioSemSenha = new UsuarioSemSenhaModel
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Login = usuario.Login,
+                Email = usuario.Email,
+                Perfil = usuario.Perfil,
+            };
+
+            return View(usuarioSemSenha);
         }
 
         [HttpPost]
-        public IActionResult Alterar([FromForm] UsuarioModel usuario)
+        public IActionResult Alterar([FromForm] UsuarioSemSenhaModel usuarioSemSenha)
         {
             try
             {
-                if (!ModelState.IsValid) return View("Editar", usuario);
+                if (!ModelState.IsValid) return View("Editar", usuarioSemSenha);
+
+                var usuario = new UsuarioModel
+                {
+                    Id = usuarioSemSenha.Id,
+                    Nome = usuarioSemSenha.Nome,
+                    Login = usuarioSemSenha.Login,
+                    Email = usuarioSemSenha.Email,
+                    Perfil = usuarioSemSenha.Perfil,
+                };
 
                 _usuarioRepository.Atualizar(usuario);
 
