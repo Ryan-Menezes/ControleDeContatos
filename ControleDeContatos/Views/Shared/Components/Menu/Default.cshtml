@@ -1,4 +1,5 @@
 ﻿@model UsuarioModel
+@using ControleDeContatos.Enum
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
@@ -15,9 +16,14 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuários</a>
-                </li>
+
+                @if (@Model.Perfil == PerfilEnum.Admin)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuários</a>
+                    </li>
+                }
+
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
                 </li>
