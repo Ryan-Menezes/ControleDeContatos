@@ -61,6 +61,25 @@ namespace ControleDeContatos.Repositories
             return usuarioDB;
         }
 
+        public UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel)
+        {
+            var usuarioDB = BuscarPorId(alterarSenhaModel.Id);
+
+            if (usuarioDB == null) throw new Exception("Houve um erro na atualização do usuario");
+
+            if (!usuarioDB.SenhaValida(alterarSenhaModel.Senha)) throw new Exception("Senha atual não confere!");
+
+            if (usuarioDB.SenhaValida(alterarSenhaModel.NovaSenha)) throw new Exception("Nova senha deve ser diferente da atual!");
+
+            usuarioDB.SetNovaSenha(alterarSenhaModel.NovaSenha);
+            usuarioDB.DataAtualizacao = DateTime.Now;
+
+            _bancoContext.Usuarios.Update(usuarioDB);
+            _bancoContext.SaveChanges();
+
+            return usuarioDB;
+        }
+
         public bool Apagar(int id)
         {
             var usuarioDB = BuscarPorId(id);

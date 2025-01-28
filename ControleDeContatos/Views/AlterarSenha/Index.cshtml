@@ -1,0 +1,34 @@
+﻿@model AlterarSenhaModel
+@{
+    ViewData["Title"] = "Alterar senha do usuário";
+}
+
+<div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-between py-4 align-items-md-center">
+        <h1 class="display-4 fs-2">@ViewData["Title"]</h1>
+    </div>
+
+    @await Component.InvokeAsync("Mensagens")
+
+    <form asp-controller="AlterarSenha" asp-action="Alterar" method="POST">
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha atual</label>
+            <input type="password" asp-for="Senha" class="form-control" id="senha">
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
+
+        <div class="mb-3">
+            <label for="nova-senha" class="form-label">Nova senha</label>
+            <input type="password" asp-for="NovaSenha" class="form-control" id="nova-senha">
+            @Html.ValidationMessageFor(x => x.NovaSenha)
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmar-nova-senha" class="form-label">Confirmar nova senha</label>
+            <input type="password" asp-for="ConfirmarNovaSenha" class="form-control" id="confirmar-nova-senha">
+            @Html.ValidationMessageFor(x => x.ConfirmarNovaSenha)
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>

@@ -8,8 +8,9 @@ namespace ControleDeContatos.Repositories
         UsuarioModel BuscarPorLoginEEmail(string login, string email);
         UsuarioModel BuscarPorId(int id);
         List<UsuarioModel> BuscarTodos();
-        UsuarioModel Adicionar(UsuarioModel contato);
-        UsuarioModel Atualizar(UsuarioModel contato);
+        UsuarioModel Adicionar(UsuarioModel usuario);
+        UsuarioModel Atualizar(UsuarioModel usuario);
+        UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel);
         bool Apagar(int id);
     }
 }
