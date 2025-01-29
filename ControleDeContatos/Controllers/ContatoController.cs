@@ -1,4 +1,5 @@
 ﻿using ControleDeContatos.Filters;
+using ControleDeContatos.Helpers;
 using ControleDeContatos.Models;
 using ControleDeContatos.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +10,18 @@ namespace ControleDeContatos.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepository _contatoRepository;
+        private readonly ISessao _sessao;
 
-        public ContatoController(IContatoRepository contatoRepository)
+        public ContatoController(IContatoRepository contatoRepository, ISessao sessao)
         {
             _contatoRepository = contatoRepository;
+            _sessao = sessao;
         }
 
         public IActionResult Index()
         {
-            var contatos = _contatoRepository.BuscarTodos();
+            var usuario = _sessao.BuscarSessaoDoUsuario();
+            var contatos = _contatoRepository.BuscarTodos(usuario.Id);
 
             return View(contatos);
         }
@@ -33,6 +37,10 @@ namespace ControleDeContatos.Controllers
             try
             {
                 if (!ModelState.IsValid) return View(contato);
+
+                var usuario = _sessao.BuscarSessaoDoUsuario();
+
+                contato.UsuarioId = usuario?.Id;
 
                 _contatoRepository.Adicionar(contato);
 
@@ -61,6 +69,10 @@ namespace ControleDeContatos.Controllers
             try
             {
                 if (!ModelState.IsValid) return View("Editar", contato);
+
+                var usuario = _sessao.BuscarSessaoDoUsuario();
+
+                contato.UsuarioId = usuario?.Id;
 
                 _contatoRepository.Atualizar(contato);
 

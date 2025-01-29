@@ -16,5 +16,8 @@ namespace ControleDeContatos.Models
         [Required(ErrorMessage = "Esse campo é obrigatório")]
         [Phone(ErrorMessage = "Esse celular é inválido")]
         public string Celular { get; set; } = string.Empty;
+
+        public int? UsuarioId { get; set; }
+        public UsuarioModel? Usuario { get; set; }
     }
 }
