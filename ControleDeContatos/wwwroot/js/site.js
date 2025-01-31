@@ -1,5 +1,23 @@
 ﻿$(document).ready(function () {
-    $('.table').DataTable({
+    loadDatatables();
+
+    $('.btn-total-contatos').click(function () {
+        const usuarioId = $(this).attr('usuario-id');
+
+        $.ajax({
+            method: 'GET',
+            url: '/Usuario/ListarContatosPorUsuarioId/' + usuarioId,
+            success: function (result) {
+                $('#lista-contatos-usuario').html(result);
+                $('#modal-contatos-usuario').modal('show');
+                loadDatatables('#table-contatos-usuario');
+            },
+        });
+    });
+});
+
+function loadDatatables(seletor = '.table') {
+    $(seletor).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -27,4 +45,4 @@
             }
         }
     });
-});
+}

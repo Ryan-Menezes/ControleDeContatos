@@ -9,10 +9,12 @@ namespace ControleDeContatos.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IContatoRepository _contatoRepository;
 
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository, IContatoRepository contatoRepository)
         {
             _usuarioRepository = usuarioRepository;
+            _contatoRepository = contatoRepository;
         }
 
         public IActionResult Index()
@@ -25,6 +27,13 @@ namespace ControleDeContatos.Controllers
         public IActionResult Criar()
         {
             return View();
+        }
+
+        public IActionResult ListarContatosPorUsuarioId(int id)
+        {
+            var contatos = _contatoRepository.BuscarTodos(id);
+
+            return PartialView("_ContatosUsuario", contatos);
         }
 
         [HttpPost]
